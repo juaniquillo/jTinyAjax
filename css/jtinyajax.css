@@ -1,0 +1,15 @@
+.editjTinyAjax p{margin:0 0 10px;}
+.editjTinyAjax {
+    border: 2px dashed #FF9900;
+    cursor: pointer;
+    padding: 3px;
+    position: relative;
+}
+.editjTinyAjax:hover{
+	background: #FFFFCC;
+}
+.form_edit_ad{text-align:center;}
+.botons_ui{font-size:12px;margin:0 5px;}
+.botons_ui span.ui-icon{float:left;margin-right:3px;}
+.botons_ui span.ui-button-text{padding:3px 5px}
+.form_edit_ad{padding:5px;}
