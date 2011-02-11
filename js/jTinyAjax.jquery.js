@@ -17,8 +17,8 @@
    $.fn.jTinyAjax = function (options) {
    
    var defaults = {
-        url: "",
-        tipeRequest: "post",
+        url: "prueba.php",
+        typeRequest: "post",
         templateFormEd : '<form action="" class="form_edit_ad"><button class="botons_ui edit_bot_ad" onclick="return false"><span class="ui-button-text"> </span> </button><button class="botons_ui cancelar_bot_ad" onclick="return false"><span class="ui-button-text"> </span></button><input type="hidden" class="editar_hid_imp_ad" value="" /></form>',
         classEdit: "editjTinyAjax",
         idEdit: "jTinyAjax",
@@ -35,15 +35,23 @@
          theme_advanced_statusbar_location : "bottom",
          theme_advanced_resizing : true
       },
+      extraParam : '',
       buttonTextEdit: '<span class="ui-icon ui-icon-circle-check">&nbsp;</span>edit',
       buttonTextCancel: '<span class="ui-icon ui-icon-circle-close">&nbsp;</span>cancel',
-      error: function(message){
-         prompt(message);
-      }
+      onError: function(message){
+        alert(message);
+      },
+      onSuccess: function(message){
+         alert(message);
+      },
+      onCancel: function(message){
+         alert(message);
+      },
+      ajaxTypeData: 'html'
       
    },
    //metodos internos
-   internarMethods = {
+   internal = {
       //iniciar plugin
       ini: function(objeto, index){
          
@@ -51,7 +59,7 @@
             idContainer = options.idEditConatiner + '_' + index,
             idElem = options.idEdit + '_' + index;
             
-            //verificar si el
+            //verificar si el elemento tiene id
          if(idActual) {
             idElem = idActual;
           }
@@ -70,7 +78,7 @@
          objeto.addClass(options.classEdit).attr('id', idElem).wrap('<div id="'+ idContainer +'" class="container_editor_ad" />').data(dataEle).parent().append(formEd);
          
          //botones UI
-         internarMethods.uiInit(dataEle.idContainer);
+         internal.uiInit(dataEle.idContainer);
          
       },
       //activar
@@ -78,7 +86,11 @@
          var idElem = objeto.data('idEle'), idContainer = objeto.data('idContainer');
          
          $('#' + idContainer).delegate('.editjTinyAjax', 'click', function(){
-            defaults.tinymceinit.elements = idElem;
+            //contenido HTML
+            $('#' + idElem ).data({
+               'html' : $(this).html()
+            });
+            defaults.tinymceinit.elements = idElem; 
             //tinyMCE Init (Habilitar tinyMCE)
             tinyMCE.init(options.tinymceinit);
             //mostrar formulario
@@ -91,47 +103,56 @@
       send: function(objeto){
          var idElem = objeto.data('idEle'), idContainer = objeto.data('idContainer');
          
-         $('#cuerpo').delegate('.editar_ad_dv', 'click', function(){
+         $('#' + idContainer).delegate('.edit_bot_ad', 'click', function(){
             //contenido HTML
             contentHTML = tinyMCE.get(idElem).getContent()
             //bloquear elemento
-            internarMethods.block(objeto);
-            //Validacion
-            //(validacion_id > 1) ? validcion_usar = validacion_id : validcion_usar = 1;
-            //AJAX
-            $.ajax({
+            internal.block(objeto);
+            //Parametros extra
+            var opcionesAjax = {
                //URL para el ajax
                url: options.url,
                //tipo ajax
-               type: options.tipeRequest,
-               data: '',
+               type: options.typeRequest,
+               //variables a enviar
+               data: "data=" + contentHTML + '&' + options.extraParam,
+               //tipo de data
+               dataType: options.typeData,
                //si se tiene exito
                success: function(content, textStatus, XMLHttpRequest){
-                  //desbloquear
-                  internarMethods.unblock(objeto);
                   //quitar elementos/igualar contenido al obtenido por ajax
-                  internarMethods.remove(idElem, idContainer, content);
+                  internal.remove(idElem, idContainer, '');
+                  //desbloquear
+                  internal.unblock(objeto);
+                  //callback
+                  options.onSuccess(content);
+                  
                },
                error: function(XMLHttpRequest, textStatus, errorThrown){
-                  options.error();
+                  //desbloquear
+                  internal.unblock(objeto);
+                  //funcion para el error
+                  options.onError(textStatus);
                }
-            });
+            }
+            //AJAX
+            $.ajax(opcionesAjax);
          
          })
          
       },
       //cancelar
       cancel: function(objeto){
-         var idElem = objeto.data('idEle'), idContainer = objeto.data('idContainer'), content = $('#' + idElem).html();
+         var idElem = objeto.data('idEle'), idContainer = objeto.data('idContainer');
          $('#' + idContainer).delegate('.cancelar_bot_ad', 'click', function(){
-            internarMethods.remove(idElem, idContainer, content);
+            content = $('#' + idElem).data('html');
+            internal.remove(idElem, idContainer, content);
          });
       },
       //remover
       remove: function(idElem, idContainer, content){
          //contenido
-         tinyMCE.get(idElem).setContent(content);
-         
+         if(content !== '') tinyMCE.get(idElem).setContent(content);
          //remover instance de tinyMCE
          tinyMCE.execCommand('mceRemoveControl', false, idElem);
          //ocultar formulario
@@ -154,14 +175,14 @@
         
    }
    
-   //console.log(defaults.classEdit);
    return this.each(function(index){
       options = $.extend(defaults, options);
       var objeto = $(this);
       //iniciar
-      internarMethods.ini(objeto, index);
-      internarMethods.clickEdit(objeto);
-      internarMethods.cancel(objeto);
+      internal.ini(objeto, index);
+      internal.clickEdit(objeto);
+      internal.cancel(objeto);
+      internal.send(objeto);
 
    });
  };
