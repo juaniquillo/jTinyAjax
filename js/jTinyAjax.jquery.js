@@ -12,6 +12,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
  
+ 
 (function($) {
    
    $.fn.jTinyAjax = function (options) {
