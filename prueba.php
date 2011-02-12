@@ -2,5 +2,4 @@
 
 echo $_POST['data'];
 
-
 ?>
