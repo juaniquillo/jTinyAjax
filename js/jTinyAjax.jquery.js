@@ -36,15 +36,18 @@
          theme_advanced_resizing : true
       },
       extraParam : '',
-      buttonTextEdit: '<span class="ui-icon ui-icon-circle-check">&nbsp;</span>edit',
+      buttonTextEdit: '<span class="ui-icon ui-icon-circle-check">&nbsp;</span>save',
       buttonTextCancel: '<span class="ui-icon ui-icon-circle-close">&nbsp;</span>cancel',
+      onClick: function(message){
+         alert(message);
+      },
+      onCancel: function(message){
+         alert(message);
+      },
       onError: function(message){
         alert(message);
       },
       onSuccess: function(message){
-         alert(message);
-      },
-      onCancel: function(message){
          alert(message);
       },
       ajaxTypeData: 'html'
@@ -86,15 +89,20 @@
          var idElem = objeto.data('idEle'), idContainer = objeto.data('idContainer');
          
          $('#' + idContainer).delegate('.editjTinyAjax', 'click', function(){
+            elemnt = $('#' + idElem );
+            var content = elemnt.html();
             //contenido HTML
             $('#' + idElem ).data({
-               'html' : $(this).html()
+               'html' : content
             });
+            //Opciones de TinyMCE
             defaults.tinymceinit.elements = idElem; 
             //tinyMCE Init (Habilitar tinyMCE)
             tinyMCE.init(options.tinymceinit);
             //mostrar formulario
             $('#' + idContainer + ' .form_edit_ad').show();
+            options.onClick(content);
+
             return false;
 	});
          
@@ -131,7 +139,7 @@
                error: function(XMLHttpRequest, textStatus, errorThrown){
                   //desbloquear
                   internal.unblock(objeto);
-                  //funcion para el error
+                  ////callback
                   options.onError(textStatus);
                }
             }
@@ -147,6 +155,8 @@
          $('#' + idContainer).delegate('.cancelar_bot_ad', 'click', function(){
             content = $('#' + idElem).data('html');
             internal.remove(idElem, idContainer, content);
+            options.onCancel(content);
+            return false;
          });
       },
       //remover
