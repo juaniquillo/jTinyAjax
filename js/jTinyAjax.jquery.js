@@ -17,13 +17,19 @@
    $.fn.jTinyAjax = function (options) {
    
    var defaults = {
+        //url para el ajax
         url: "prueba.php",
+        //tipo de request
         typeRequest: "post",
+        //template para el formulario
         templateFormEd : '<form action="" class="form_edit_ad"><button class="botons_ui edit_bot_ad" onclick="return false"><span class="ui-button-text"> </span> </button><button class="botons_ui cancelar_bot_ad" onclick="return false"><span class="ui-button-text"> </span></button><input type="hidden" class="editar_hid_imp_ad" value="" /></form>',
+        //clase que se aplica al container
         classEdit: "editjTinyAjax",
+        //id que se aplica al elemento si no tiene uno asignado
         idEdit: "jTinyAjax",
+        //id del container
         idEditConatiner: "jTinyAjaxContain",
-        editContainer: "editarContainer",
+        //opciones de TinyMCE
         tinymceinit:{
          // General options
          theme : "advanced",
@@ -39,16 +45,16 @@
       buttonTextEdit: '<span class="ui-icon ui-icon-circle-check">&nbsp;</span>save',
       buttonTextCancel: '<span class="ui-icon ui-icon-circle-close">&nbsp;</span>cancel',
       onClick: function(message){
-         alert(message);
+         //alert(message);
       },
       onCancel: function(message){
-         alert(message);
+         //alert(message);
       },
       onError: function(message){
-        alert(message);
+        //alert(message);
       },
       onSuccess: function(message){
-         alert(message);
+         //alert(message);
       },
       ajaxTypeData: 'html'
       
@@ -101,6 +107,7 @@
             tinyMCE.init(options.tinymceinit);
             //mostrar formulario
             $('#' + idContainer + ' .form_edit_ad').show();
+            //callback
             options.onClick(content);
 
             return false;
