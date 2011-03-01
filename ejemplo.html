@@ -9,22 +9,40 @@
     <!-- Scripts -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" ></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" ></script>
+    <script type="text/javascript" src="js/jquery.blockUI/jquery.blockUI.min.js"></script>
     <script type="text/javascript" src="js/tiny_mce/tiny_mce.js"></script>
-    
     <script type="text/javascript" src="js/jTinyAjax.jquery.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('.jtinymceajax, .jtinymceajax2').jTinyAjax();
-        });
-        
-    </script>
     
 </head>
 <body>
     
+    <h1>Default</h1>
     <div class="jtinymceajax" id="id_1"><p>hola otra mas</p></div>
-    <p>s</p>
+    <h1>Con "tinymceinit" Personalizado</h1>
     <div class="jtinymceajax2"><p>hola</p></div>
     
+<script type="text/javascript">
+    //con opciones defecto
+    $('.jtinymceajax').jTinyAjax();
+   
+    //con tinymceinit personalizado
+    initTine = {
+        // General options
+        mode : "exact",
+        theme : "advanced",
+        plugins : "spellchecker,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
+
+        // Theme options
+        theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect",
+        theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+        theme_advanced_toolbar_location : "top",
+        theme_advanced_statusbar_location : "bottom",
+        theme_advanced_resizing : true,
+    };
+    $('.jtinymceajax2').jTinyAjax({
+        tinymceinit : initTine
+    });
+        
+</script>
 </body>
 </html>

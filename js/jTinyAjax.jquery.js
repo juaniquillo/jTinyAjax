@@ -23,12 +23,6 @@
         typeRequest: "post",
         //template para el formulario
         templateFormEd : '<form action="" class="form_edit_ad"><button class="botons_ui edit_bot_ad" onclick="return false"><span class="ui-button-text"> </span> </button><button class="botons_ui cancelar_bot_ad" onclick="return false"><span class="ui-button-text"> </span></button><input type="hidden" class="editar_hid_imp_ad" value="" /></form>',
-        //clase que se aplica al container
-        classEdit: "editjTinyAjax",
-        //id que se aplica al elemento si no tiene uno asignado
-        idEdit: "jTinyAjax",
-        //id del container
-        idEditConatiner: "jTinyAjaxContain",
         //opciones de TinyMCE
         tinymceinit:{
          // General options
@@ -59,14 +53,20 @@
       ajaxTypeData: 'html'
       
    },
-   //metodos internos
+   //variables y métodos internos
    internal = {
+      //clase que se aplica al container
+      classEdit: "editjTinyAjax",
+      //id que se aplica al elemento si no tiene uno asignado
+      idEdit: "jTinyAjax",
+      //id del container
+      idEditConatiner: "jTinyAjaxContain",
       //iniciar plugin
       ini: function(objeto, index){
          
          var idActual = objeto.attr('id'),
-            idContainer = options.idEditConatiner + '_' + index,
-            idElem = options.idEdit + '_' + index;
+            idContainer = internal.idEditConatiner + '_' + index,
+            idElem = internal.idEdit + '_' + index;
             
             //verificar si el elemento tiene id
          if(idActual) {
@@ -84,7 +84,7 @@
          formEd.find('.edit_bot_ad .ui-button-text').html(options.buttonTextEdit);
          formEd.find('.cancelar_bot_ad .ui-button-text').html(options.buttonTextCancel);
          //agregar id, agregar container y append formulario
-         objeto.addClass(options.classEdit).attr('id', idElem).wrap('<div id="'+ idContainer +'" class="container_editor_ad" />').data(dataEle).parent().append(formEd);
+         objeto.addClass(internal.classEdit).attr('id', idElem).wrap('<div id="'+ idContainer +'" class="container_editor_ad" />').data(dataEle).parent().append(formEd);
          
          //botones UI
          internal.uiInit(dataEle.idContainer);
@@ -93,7 +93,7 @@
       //activar
       clickEdit: function(objeto){
          var idElem = objeto.data('idEle'), idContainer = objeto.data('idContainer');
-         
+         //delegate para el click
          $('#' + idContainer).delegate('.editjTinyAjax', 'click', function(){
             elemnt = $('#' + idElem );
             var content = elemnt.html();
@@ -191,12 +191,13 @@
       }
         
    }
-   
-   return this.each(function(index){
+   //para tener id únicos para los editores y containers
+   var $index2 = $('div[id^="'+ internal.idEdit +'"]').length;
+   return this.each(function(){
       options = $.extend(defaults, options);
       var objeto = $(this);
       //iniciar
-      internal.ini(objeto, index);
+      internal.ini(objeto, $index2);
       internal.clickEdit(objeto);
       internal.cancel(objeto);
       internal.send(objeto);
