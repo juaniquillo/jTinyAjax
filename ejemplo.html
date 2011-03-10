@@ -17,15 +17,23 @@
 <body>
     
     <h1>Default</h1>
-    <div class="jtinymceajax" id="id_1"><p>hola otra mas</p></div>
-    <h1>Con "tinymceinit" Personalizado</h1>
-    <div class="jtinymceajax2"><p>hola</p></div>
+    <div class="jtinymceajax" id="id_1"><p>hola</p></div>
+    <h1>Con "tinymceinit()" Personalizado</h1>
+    <div class="jtinymceajax2"><p>hola de nuevo</p></div>
+    <h1>Usando botones de jQuery UI</h1>
+    <div class="jtinymceajax3"><p>hola con jquery UI</p></div>
     
 <script type="text/javascript">
+    
+    //pagina a donde se enviara
+    var pagina = 'prueba.php';
+    
     //con opciones defecto
-    $('.jtinymceajax').jTinyAjax();
+    $('.jtinymceajax').jTinyAjax({
+        url: pagina,
+    });
    
-    //con tinymceinit personalizado
+    //con tinymceinit() personalizado
     initTine = {
         // General options
         mode : "exact",
@@ -40,8 +48,19 @@
         theme_advanced_resizing : true,
     };
     $('.jtinymceajax2').jTinyAjax({
+        url: pagina,
         tinymceinit : initTine
     });
+    
+    //con botones de jQuery UI
+    $('.jtinymceajax3').jTinyAjax({
+        url: pagina,
+        UIfy: true,
+        buttonTextEdit: '<span class="ui-icon ui-icon-circle-check">&nbsp;</span>save',
+        buttonTextCancel: '<span class="ui-icon ui-icon-circle-close">&nbsp;</span>cancel'
+    });
+    
+    
         
 </script>
 </body>

@@ -17,14 +17,12 @@
    $.fn.jTinyAjax = function (options) {
    
    var defaults = {
-        //url para el ajax
-        url: "prueba.php",
-        //tipo de request
-        typeRequest: "post",
-        //template para el formulario
-        templateFormEd : '<form action="" class="form_edit_ad"><button class="botons_ui edit_bot_ad" onclick="return false"><span class="ui-button-text"> </span> </button><button class="botons_ui cancelar_bot_ad" onclick="return false"><span class="ui-button-text"> </span></button><input type="hidden" class="editar_hid_imp_ad" value="" /></form>',
-        //opciones de TinyMCE
-        tinymceinit:{
+      //url para el ajax
+      url: "",
+      //tipo de request
+      typeRequest: "post",
+      //opciones de TinyMCE
+      tinymceinit:{
          // General options
          theme : "advanced",
          mode : "exact",
@@ -36,8 +34,9 @@
          theme_advanced_resizing : true
       },
       extraParam : '',
-      buttonTextEdit: '<span class="ui-icon ui-icon-circle-check">&nbsp;</span>save',
-      buttonTextCancel: '<span class="ui-icon ui-icon-circle-close">&nbsp;</span>cancel',
+      buttonTextEdit: 'save',
+      buttonTextCancel: 'cancel',
+      UIfy: false,
       onClick: function(message){
          //alert(message);
       },
@@ -61,6 +60,8 @@
       idEdit: "jTinyAjax",
       //id del container
       idEditConatiner: "jTinyAjaxContain",
+      //template para el formulario
+      templateFormEd : '<form action="" class="form_edit_ad"><button class="botons_ui edit_bot_ad" onclick="return false"><span class="ui-button-text"> </span> </button><button class="botons_ui cancelar_bot_ad" onclick="return false"><span class="ui-button-text"> </span></button><input type="hidden", class="editar_hid_imp_ad" value="" /></form>',
       //iniciar plugin
       ini: function(objeto, index){
          
@@ -79,7 +80,7 @@
                'idEle': idElem
           },
          //agregar formulario
-          formEd = $(options.templateFormEd).hide().find('.editar_hid_imp_ad').attr('value', index + 1).end();
+          formEd = $(internal.templateFormEd).hide().find('.editar_hid_imp_ad').attr('value', index + 1).end();
          //append texto a los botones
          formEd.find('.edit_bot_ad .ui-button-text').html(options.buttonTextEdit);
          formEd.find('.cancelar_bot_ad .ui-button-text').html(options.buttonTextCancel);
@@ -87,7 +88,9 @@
          objeto.addClass(internal.classEdit).attr('id', idElem).wrap('<div id="'+ idContainer +'" class="container_editor_ad" />').data(dataEle).parent().append(formEd);
          
          //botones UI
-         internal.uiInit(dataEle.idContainer);
+         if(options.UIfy){
+            internal.uiInit(dataEle.idContainer);
+         }
          
       },
       //activar
@@ -102,7 +105,8 @@
                'html' : content
             });
             //Opciones de TinyMCE
-            defaults.tinymceinit.elements = idElem; 
+            defaults.tinymceinit.elements = idElem;
+            //init_instance_callback : "myCustomInitInstance"
             //tinyMCE Init (Habilitar tinyMCE)
             tinyMCE.init(options.tinymceinit);
             //mostrar formulario
