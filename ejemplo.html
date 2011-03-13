@@ -22,25 +22,26 @@
     <div class="jtinymceajax2"><p>hola de nuevo</p></div>
     <h1>Usando botones de jQuery UI</h1>
     <div class="jtinymceajax3"><p>hola con jquery UI</p></div>
+    <h1>Ejemplo Usando <a href="http://jquery.malsup.com/block/">BlockUI</a> para bloquear elementos mientras se envía el formulario</h1>
+    <div id="jtinymceajax4"><p>hola con BlockUI</p></div>
+    <h1>Ejemplo usando Callbacks</h1>
+    <div id="jtinymceajax5"><p>hola con callbacks</p></div>
     
 <script type="text/javascript">
     
     //pagina a donde se enviara
-    var pagina = 'prueba.php';
+    var pagina = 'prueba.php', pagina2 = 'prueba2.php';
     
     //con opciones defecto
     $('.jtinymceajax').jTinyAjax({
-        url: pagina,
+        url: pagina
     });
    
     //con tinymceinit() personalizado
     initTine = {
-        // General options
         mode : "exact",
         theme : "advanced",
         plugins : "spellchecker,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
-
-        // Theme options
         theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect",
         theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
         theme_advanced_toolbar_location : "top",
@@ -60,6 +61,38 @@
         buttonTextCancel: '<span class="ui-icon ui-icon-circle-close">&nbsp;</span>cancel'
     });
     
+    
+    //utilizando BlockUI
+    $('#jtinymceajax4').jTinyAjax({
+        url: pagina2,
+        blockUI: true
+    });
+    
+    
+    //usando Callbacks
+    
+    //quitar el comentario para causar error
+    //pagina2 = 'pagina_no_existe.php';
+    
+    $('#jtinymceajax5').jTinyAjax({
+        url: pagina2,
+        onClick: function(message){
+            alert('onClick, mensaje: ' + message);
+        },
+        onCancel: function(message){
+            alert('onCancel, mensaje: '  + message);
+        },
+        onSend: function(message){
+            alert('onSend, mensaje: '  + message);
+        },
+        onError: function(message){
+            alert('onError, mensaje: '  + message);
+        },
+        onSuccess: function(message){
+            alert('onSuccess, mensaje: '  + message);
+        },
+        blockUI: true
+    });
     
         
 </script>

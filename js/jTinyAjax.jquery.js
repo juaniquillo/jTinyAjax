@@ -21,9 +21,8 @@
       url: "",
       //tipo de request
       typeRequest: "post",
-      //opciones de TinyMCE
+      //opciones defecto de TinyMCE
       tinymceinit:{
-         // General options
          theme : "advanced",
          mode : "exact",
          theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect, removeformat",
@@ -33,22 +32,49 @@
          theme_advanced_statusbar_location : "bottom",
          theme_advanced_resizing : true
       },
+      //parametros extras para enviar en la consulta AJAX
       extraParam : '',
+      //texto del boton de "save"
       buttonTextEdit: 'save',
+      //texto del boton de "cancel"
       buttonTextCancel: 'cancel',
+      //opcion para convertir botones en botones de jQuery UI
       UIfy: false,
+      //opcion para usar blockUI
+      blockUI: false,
+      //opciones de blockUI
+      blockOptions:{ 
+         message: '<img src="images/ajax-loader.gif" />',
+         overlayCSS: {backgroundColor: '#eee',opacity: 0.5},
+         css: { 
+            border: 'none',
+            backgroundColor: 'transparent'
+           // opacity: 0.6
+         },
+         fadeIn:  200, 
+         fadeOut:  200
+       },
+      //callback que se ejecuta cuando se le da click al elemetno para editarlo
       onClick: function(message){
-         //alert(message);
+         
       },
+      //callback que se ejecuta cuando se le da click al boton de cancelar
       onCancel: function(message){
-         //alert(message);
+         
       },
+      //callback que se ejecuta cuando se le da click al boton de enviar
+      onSend: function(message){
+         
+      },
+      //callback que se ejecuta cuando termine de realizarse la consulta
       onError: function(message){
-        //alert(message);
+        
       },
+      //callback que se ejecuta cuando se existe un error con la consulta
       onSuccess: function(message){
-         //alert(message);
+         
       },
+      //tipo de data a recibirse. HTML para el comportamiento defecto
       ajaxTypeData: 'html'
       
    },
@@ -69,12 +95,12 @@
             idContainer = internal.idEditConatiner + '_' + index,
             idElem = internal.idEdit + '_' + index;
             
-            //verificar si el elemento tiene id
+         //verificar si el elemento tiene id
          if(idActual) {
             idElem = idActual;
           }
             
-            //objeto para la data()
+         //objeto para la data()
          var dataEle = {
                'idContainer': idContainer,
                'idEle': idElem
@@ -82,9 +108,8 @@
          //agregar formulario
           formEd = $(internal.templateFormEd).hide().find('.editar_hid_imp_ad').attr('value', index + 1).end();
          //append texto a los botones
-         formEd.find('.edit_bot_ad .ui-button-text').html(options.buttonTextEdit);
-         formEd.find('.cancelar_bot_ad .ui-button-text').html(options.buttonTextCancel);
-         //agregar id, agregar container y append formulario
+         formEd.find('.edit_bot_ad .ui-button-text').html(options.buttonTextEdit).end().find('.cancelar_bot_ad .ui-button-text').html(options.buttonTextCancel);
+         //agregar id, agregar id al container, agregar container y append formulario
          objeto.addClass(internal.classEdit).attr('id', idElem).wrap('<div id="'+ idContainer +'" class="container_editor_ad" />').data(dataEle).parent().append(formEd);
          
          //botones UI
@@ -106,7 +131,8 @@
             });
             //Opciones de TinyMCE
             defaults.tinymceinit.elements = idElem;
-            //init_instance_callback : "myCustomInitInstance"
+            //callback cuando el editor termine de cargar
+            //options.tinymceinit.init_instance_callback = function(){};
             //tinyMCE Init (Habilitar tinyMCE)
             tinyMCE.init(options.tinymceinit);
             //mostrar formulario
@@ -120,13 +146,15 @@
       },
       //consulta ajax
       send: function(objeto){
-         var idElem = objeto.data('idEle'), idContainer = objeto.data('idContainer');
+         var idElem = objeto.data('idEle'), idContainer = objeto.data('idContainer'), container = $('#' + idContainer);
          
-         $('#' + idContainer).delegate('.edit_bot_ad', 'click', function(){
+         container.delegate('.edit_bot_ad', 'click', function(){
             //contenido HTML
             contentHTML = tinyMCE.get(idElem).getContent()
+            //onSend callback
+            options.onSend(contentHTML);
             //bloquear elemento
-            internal.block(objeto);
+            if(options.blockUI) internal.blockInt(container);
             //Parametros extra
             var opcionesAjax = {
                //URL para el ajax
@@ -142,14 +170,14 @@
                   //quitar elementos/igualar contenido al obtenido por ajax
                   internal.remove(idElem, idContainer, '');
                   //desbloquear
-                  internal.unblock(objeto);
+                  if(options.blockUI) internal.unblockInt(container);
                   //callback
                   options.onSuccess(content);
                   
                },
                error: function(XMLHttpRequest, textStatus, errorThrown){
                   //desbloquear
-                  internal.unblock(objeto);
+                  if(options.blockUI) internal.unblockInt(container);
                   ////callback
                   options.onError(textStatus);
                }
@@ -180,11 +208,16 @@
          $('.form_edit_ad', '#' + idContainer).hide();
       },
       //bloquear plugin
-      block: function(objeto){
-         
+      blockInt: function(objeto){
+         if($.fn.block){
+            objeto.block(options.blockOptions);
+         }
       },
-      unblock: function(objeto){
-         
+      //desbloquear plugin
+      unblockInt: function(objeto){
+         if($.fn.unblock){
+            objeto.unblock()
+         }
       },
       //botones jquery UI
       uiInit: function(containerId){
@@ -202,8 +235,11 @@
       var objeto = $(this);
       //iniciar
       internal.ini(objeto, $index2);
+      //click
       internal.clickEdit(objeto);
+      //cancel
       internal.cancel(objeto);
+      //enviar
       internal.send(objeto);
 
    });
