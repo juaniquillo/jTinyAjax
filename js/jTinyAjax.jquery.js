@@ -74,7 +74,7 @@
       onSuccess: function(message){
          
       },
-      //tipo de data a recibirse. HTML para el comportamiento defecto
+      //tipo de data a recibirse. HTML para el comportamiento defecto. Si se usa json se espera un campo llamado "data" el cual debe poseer la informacion que se quiere colocar en el editor web
       ajaxTypeData: 'html'
       
    },
@@ -168,7 +168,12 @@
                //si se tiene exito
                success: function(content, textStatus, XMLHttpRequest){
                   //quitar elementos/igualar contenido al obtenido por ajax
-                  internal.remove(idElem, idContainer, '');
+                  if(options.ajaxTypeData == "json"){
+                     internal.remove(idElem, idContainer, content.data);
+                  }
+                  else{
+                     internal.remove(idElem, idContainer, content);
+                  }
                   //desbloquear
                   if(options.blockUI) internal.unblockInt(container);
                   //callback
