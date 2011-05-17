@@ -1,22 +1,22 @@
-Versi&oacute;n actual
+<h2>Versi&oacute;n actual</h2>
 
 jTinyAjax 1.0
 
-Pruebas hechas en:
+<h2>Pruebas hechas en:</h2>
 
 IE 7 en adelante, Firefox 3 en adelante, Chrome 10 en adelante, Opera 11 en adelante y Safari 4 en adelante.
 
-Dependencias
+<h2>Dependencias</h2>
 
 El plugin depende de jQuery versi&oacute;n 1.4.2 o mayor debido al uso de funciones como delegate().
 Tambi&eacute;n depende del paquete normal de TinyMCE versi&oacute;n 3 o superior. Favor de no usar la versi&oacute;n de jQuery.
 
-Opcional
+<h2>Opcional</h2>
 
 jQuery UI
 BlockUI
 
-Uso
+<h2>Uso</h2>
 
 Primero, debemos incluir los archivos necesarios:
 
@@ -48,7 +48,7 @@ $('.jtinymceajax').jTinyAjax({
 });
 </pre>
 
-Opciones
+<h2>Opciones</h2>
 
 * url: defecto - Empty String<br/>
 URL donde se enviar&aacute; el contenido. La misma se encargar&aacute; de las operaciones del lado del servidor
@@ -74,7 +74,7 @@ Opciones de blockUI que se utilizar&aacute;n si la opci&oacute;n blockUI tiene e
 * ajaxTypeData: defecto - "html"<br/>
 Tipo de data a recibirse. HTML para el comportamiento defecto. Esto equivale al opci&oacute;n dataType de la funci&oacute;n ajax() de jQuery. Si se usa json se espera un campo llamado "data" el cual debe poseer la informaci&oacute;n que se quiere colocar en el editor web
 
-Eventos
+<h2>Eventos</h2>
 
 * onClick: function<br/>
 Callback que se ejecuta cuando se le da click al elemetno para editarlo
@@ -87,10 +87,10 @@ Callback que se ejecuta cuando hay un error en la consulta
 * onSuccess: function<br/>
 Callback que se ejecuta cuando termine de realizarse la consulta
 
-Demo
+<h2>Demo</h2>
 
 jTinyAjax [demos](http://juaniquillo.com/codigo/jquery/jTinyAjax/1.0/)
 
-Descarcar
+<h2>Descarcar</h2>
 
 Descarga el plugin en [GitHub](https://github.com/juaniquillo/jTinyAjax)
