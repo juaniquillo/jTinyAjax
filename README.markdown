@@ -50,41 +50,41 @@ $('.jtinymceajax').jTinyAjax({
 
 Opciones
 
-* url: defecto – Empty String&lt;br /&gt;
+* url: defecto - Empty String<br/>
 URL donde se enviar&aacute; el contenido. La misma se encargar&aacute; de las operaciones del lado del servidor
-* typeRequest: defecto - "post"&lt;br /&gt;
-Tipo de request AJAX , “post" o “get"
-* tinymceinit: defecto - Objeto de opciones de TinyMCE&lt;br /&gt;
-Opciones de TinyMCE. Para más opciones pueden visitar la página oficial de TinyMCE.
-* extraParam: defecto - Empty String&lt;br /&gt;
+* typeRequest: defecto - "post"<br/>
+Tipo de request AJAX , "post" o "get"
+* tinymceinit: defecto - Objeto de opciones de TinyMCE<br/>
+Opciones de TinyMCE. Para m&aacute;s opciones pueden visitar la p&aacute;gina oficial de TinyMCE.
+* extraParam: defecto - Empty String<br/>
 Parametros extras para enviar en la consulta AJAX el formato url string:
 <pre>
 variable1=valor1&variable2=valor2
 </pre>
-* buttonTextEdit: defecto - "save"&lt;br /&gt;
+* buttonTextEdit: defecto - "save"<br/>
 Texto del boton de enviar el contenido
-* buttonTextCancel: defecto - "cancel"&lt;br /&gt;
+* buttonTextCancel: defecto - "cancel"<br/>
 Texto del boton de cancelar el contenido
-* UIfy: defecto - false&lt;br /&gt;
+* UIfy: defecto - false<br/>
 Opcion para convertir botones en botones de jQuery UI
-* blockUI: false&lt;br /&gt;
+* blockUI: false<br/>
 Opcion para usar blockUI. Valores: true, false
-* blockOptions: defecto - Objeto de opciones de blockUI&lt;br /&gt;
-Opciones de blockUI que se utilizar&aacute;n si la opción blockUI tiene el valor de true. Para m&aacute;s opciones pueden visitar la p&aacute;gina oficial del plugin.
-* ajaxTypeData: defecto - "html"&lt;br /&gt;
-Tipo de data a recibirse. HTML para el comportamiento defecto. Esto equivale al opci&oacute;n dataType de la función ajax() de jQuery. Si se usa json se espera un campo llamado “data" el cual debe poseer la informaci&oacute;n que se quiere colocar en el editor web
+* blockOptions: defecto - Objeto de opciones de blockUI<br/>
+Opciones de blockUI que se utilizar&aacute;n si la opci&oacute;n blockUI tiene el valor de true. Para m&aacute;s opciones pueden visitar la p&aacute;gina oficial del plugin.
+* ajaxTypeData: defecto - "html"<br/>
+Tipo de data a recibirse. HTML para el comportamiento defecto. Esto equivale al opci&oacute;n dataType de la funci&oacute;n ajax() de jQuery. Si se usa json se espera un campo llamado "data" el cual debe poseer la informaci&oacute;n que se quiere colocar en el editor web
 
 Eventos
 
-* onClick: function&lt;br /&gt;
+* onClick: function<br/>
 Callback que se ejecuta cuando se le da click al elemetno para editarlo
-* onCancel: function&lt;br /&gt;
+* onCancel: function<br/>
 Callback que se ejecuta cuando se le da click al boton de cancelar
-* onSend: function&lt;br /&gt;
+* onSend: function<br/>
 Callback que se ejecuta cuando se le da click al boton de enviar
-* onError: function&lt;br /&gt;
+* onError: function<br/>
 Callback que se ejecuta cuando hay un error en la consulta
-* onSuccess: function&lt;br /&gt;
+* onSuccess: function<br/>
 Callback que se ejecuta cuando termine de realizarse la consulta
 
 Demo
