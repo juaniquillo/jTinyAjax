@@ -1,4 +1,4 @@
-Versión actual
+Versi&oacute;n actual
 
 jTinyAjax 1.0
 
@@ -9,7 +9,7 @@ IE 7 en adelante, Firefox 3 en adelante, Chrome 10 en adelante, Opera 11 en adel
 Dependencias
 
 El plugin depende de jQuery versión 1.4.2 o mayor debido al uso de funciones como delegate().
-También depende del paquete normal de TinyMCE versión 3 o superior. Favor de no usar la versión de jQuery.
+Tambi&eacute;n depende del paquete normal de TinyMCE versi&oacute;n 3 o superior. Favor de no usar la versi&oacute;n de jQuery.
 
 Opcional
 
@@ -20,38 +20,47 @@ Uso
 
 Primero, debemos incluir los archivos necesarios:
 
+<pre>
 <!-- css jTinyMCE -->
 <link href="css/jtinyajax.css" rel="stylesheet" type="text/css" />
 <!-- Scripts -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript"><!--mce:0--></script>
-<script src="js/tiny_mce/tiny_mce.js" type="text/javascript"><!--mce:1--></script>
-<script src="js/jTinyAjax.jquery.min.js" type="text/javascript"><!--mce:2--></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript"></script>
+<script src="js/tiny_mce/tiny_mce.js" type="text/javascript"></script>
+<script src="js/jTinyAjax.jquery.min.js" type="text/javascript"></script>
+</pre>
 
-Si se van a usar jQuery UI y/o BlockUI se incluyen también:
+Si se van a usar jQuery UI y/o BlockUI se incluyen tambi&eacute;n:
 
+<pre>
 <!-- css jquery UI -->
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css" type="text/css" />
 <!-- Scripts -->
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript"><!--mce:3--></script>
-<script src="js/jquery.blockUI/jquery.blockUI.min.js" type="text/javascript"><!--mce:4--></script>
-La forma más básica de usar jTinyAjax es pasando el URL de la página encargada de interactuar con el servidor, de esta forma:
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript"></script>
+<script src="js/jquery.blockUI/jquery.blockUI.min.js" type="text/javascript"></script>
+</pre>
 
+La forma más b&aacute;sica de usar jTinyAjax es pasando el URL de la p&aacute;gina encargada de interactuar con el servidor, de esta forma:
+
+<pre>
 //con opciones defecto
 $('.jtinymceajax').jTinyAjax({
      url: "pagina.php"
 });
+</pre>
 
 Opciones
 
 url: defecto – Empty String
-URL donde se enviará el contenido. La misma se encargará de las operaciones del lado del servidor
+URL donde se enviar&aacute; el contenido. La misma se encargar&aacute; de las operaciones del lado del servidor
 typeRequest: defecto - ”post”
 Tipo de request AJAX , “post” o “get”
 tinymceinit: defecto - Objeto de opciones de TinyMCE
 Opciones de TinyMCE. Para más opciones pueden visitar la página oficial de TinyMCE.
 extraParam: defecto - Empty String
 Parametros extras para enviar en la consulta AJAX el formato url string:
+<pre>
 variable1=valor1&variable2=valor2
+</pre>
 buttonTextEdit: defecto - ”save”
 Texto del boton de enviar el contenido
 buttonTextCancel: defecto - ”cancel”
@@ -61,9 +70,9 @@ Opcion para convertir botones en botones de jQuery UI
 blockUI: false
 Opcion para usar blockUI. Valores: true, false
 blockOptions: defecto - Objeto de opciones de blockUI
-Opciones de blockUI que se utilizarán si la opción blockUI tiene el valor de true. Para más opciones pueden visitar la página oficial del plugin.
+Opciones de blockUI que se utilizar&aacute;n si la opción blockUI tiene el valor de true. Para m&aacute;s opciones pueden visitar la p&aacute;gina oficial del plugin.
 ajaxTypeData: defecto - ”html”
-Tipo de data a recibirse. HTML para el comportamiento defecto. Esto equivale al opción dataType de la función ajax() de jQuery. Si se usa json se espera un campo llamado “data” el cual debe poseer la informacion que se quiere colocar en el editor web
+Tipo de data a recibirse. HTML para el comportamiento defecto. Esto equivale al opci&oacute;n dataType de la función ajax() de jQuery. Si se usa json se espera un campo llamado “data” el cual debe poseer la informaci&oacute;n que se quiere colocar en el editor web
 
 Eventos
 
