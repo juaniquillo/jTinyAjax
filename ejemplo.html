@@ -4,28 +4,28 @@
     <title>Como usar TinyMCE como un editor AJAX</title>
     <!-- css jquery UI -->
     <link href="js/jquery.ui/css/theme4/theme4.css" rel="stylesheet" type="text/css" />
-    <!-- css jTinyMCE -->
+    <!-- css jTinyAjax -->
     <link href="css/jtinyajax.css" rel="stylesheet" type="text/css" />
     <!-- Scripts -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" ></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" ></script>
     <script type="text/javascript" src="js/jquery.blockUI/jquery.blockUI.min.js"></script>
     <script type="text/javascript" src="js/tiny_mce/tiny_mce.js"></script>
-    <script type="text/javascript" src="js/jTinyAjax.jquery.js"></script>
+    <script type="text/javascript" src="js/jTinyAjax.jquery.min.js"></script>
     
 </head>
 <body>
     
     <h1>Default</h1>
-    <div class="jtinymceajax" id="id_1"><p>hola</p></div>
+    <div class="jTinyAjaxajax" id="id_1"><p>hola</p></div>
     <h1>Con "tinymceinit()" Personalizado</h1>
-    <div class="jtinymceajax2"><p>hola de nuevo</p></div>
+    <div class="jTinyAjaxajax2"><p>hola de nuevo</p></div>
     <h1>Usando botones de jQuery UI</h1>
-    <div class="jtinymceajax3"><p>hola con jquery UI</p></div>
+    <div class="jTinyAjaxajax3"><p>hola con jquery UI</p></div>
     <h1>Ejemplo Usando <a href="http://jquery.malsup.com/block/">BlockUI</a> para bloquear elementos mientras se envía el formulario</h1>
-    <div id="jtinymceajax4"><p>hola con BlockUI</p></div>
+    <div id="jTinyAjaxajax4"><p>hola con BlockUI</p></div>
     <h1>Ejemplo usando Callbacks</h1>
-    <div id="jtinymceajax5"><p>hola con callbacks</p></div>
+    <div id="jTinyAjaxajax5"><p>hola con callbacks</p></div>
     
 <script type="text/javascript">
     
@@ -33,7 +33,7 @@
     var pagina = 'prueba.php', pagina2 = 'prueba2.php';
     
     //con opciones defecto
-    $('.jtinymceajax').jTinyAjax({
+    $('.jTinyAjaxajax').jTinyAjax({
         url: pagina
     });
    
@@ -48,13 +48,13 @@
         theme_advanced_statusbar_location : "bottom",
         theme_advanced_resizing : true,
     };
-    $('.jtinymceajax2').jTinyAjax({
+    $('.jTinyAjaxajax2').jTinyAjax({
         url: pagina,
         tinymceinit : initTine
     });
     
     //con botones de jQuery UI
-    $('.jtinymceajax3').jTinyAjax({
+    $('.jTinyAjaxajax3').jTinyAjax({
         url: pagina,
         UIfy: true,
         buttonTextEdit: '<span class="ui-icon ui-icon-circle-check">&nbsp;</span>save',
@@ -63,7 +63,7 @@
     
     
     //utilizando BlockUI
-    $('#jtinymceajax4').jTinyAjax({
+    $('#jTinyAjaxajax4').jTinyAjax({
         url: pagina2,
         blockUI: true
     });
@@ -74,7 +74,7 @@
     //quitar el comentario para causar error
     //pagina2 = 'pagina_no_existe.php';
     
-    $('#jtinymceajax5').jTinyAjax({
+    $('#jTinyAjaxajax5').jTinyAjax({
         url: pagina2,
         onClick: function(message){
             alert('onClick, mensaje: ' + message);

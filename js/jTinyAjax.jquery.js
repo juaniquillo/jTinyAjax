@@ -2,7 +2,6 @@
  * jQuery jTinyAjax plugin
  * @version 1.0 
  * @requires jQuery v1.4.2 or later
- * @requires jQuery UI v1.8.7 or later
  * @requires TinyMCE Package
  * @author Victor Sanchez
  * 
@@ -54,6 +53,8 @@
          fadeIn:  200, 
          fadeOut:  200
        },
+      //tipo de data a recibirse. HTML para el comportamiento defecto. Si se usa json se espera un campo llamado "data" el cual debe poseer la informacion que se quiere colocar en el editor web
+      ajaxTypeData: 'html',
       //callback que se ejecuta cuando se le da click al elemetno para editarlo
       onClick: function(message){
          
@@ -66,17 +67,14 @@
       onSend: function(message){
          
       },
-      //callback que se ejecuta cuando termine de realizarse la consulta
+      //callback que se ejecuta cuando hay un error en la consulta
       onError: function(message){
         
       },
       //callback que se ejecuta cuando se existe un error con la consulta
       onSuccess: function(message){
          
-      },
-      //tipo de data a recibirse. HTML para el comportamiento defecto. Si se usa json se espera un campo llamado "data" el cual debe poseer la informacion que se quiere colocar en el editor web
-      ajaxTypeData: 'html'
-      
+      }
    },
    //variables y métodos internos
    internal = {
@@ -90,7 +88,7 @@
       templateFormEd : '<form action="" class="form_edit_ad"><button class="botons_ui edit_bot_ad" onclick="return false"><span class="ui-button-text"> </span> </button><button class="botons_ui cancelar_bot_ad" onclick="return false"><span class="ui-button-text"> </span></button><input type="hidden", class="editar_hid_imp_ad" value="" /></form>',
       //iniciar plugin
       ini: function(objeto, index){
-         
+         //variables de iniciacion
          var idActual = objeto.attr('id'),
             idContainer = internal.idEditConatiner + '_' + index,
             idElem = internal.idEdit + '_' + index;
@@ -187,7 +185,7 @@
                   options.onError(textStatus);
                }
             }
-            //AJAX
+            // Llamada AJAX
             $.ajax(opcionesAjax);
          
          })
