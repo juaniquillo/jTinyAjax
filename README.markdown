@@ -94,3 +94,6 @@ jTinyAjax [demos](http://juaniquillo.com/codigo/jquery/jTinyAjax/1.0/)
 <h2>Descarcar</h2>
 
 Descarga el plugin en [GitHub](https://github.com/juaniquillo/jTinyAjax)
+
+<h2>English Version</h2>
+I'm currently working on an english version of this document.
