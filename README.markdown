@@ -13,7 +13,7 @@ Tambi&eacute;n depende del paquete normal de TinyMCE versi&oacute;n 3 o superior
 
 <h2>Opcional</h2>
 
-jQuery UI
+jQuery UI<br/>
 BlockUI
 
 <h2>Uso</h2>
@@ -50,41 +50,41 @@ $('.jtinymceajax').jTinyAjax({
 
 <h2>Opciones</h2>
 
-* url: defecto - Empty String<br/>
+* <strong>url</strong>: defecto - Empty String<br/>
 URL donde se enviar&aacute; el contenido. La misma se encargar&aacute; de las operaciones del lado del servidor
-* typeRequest: defecto - "post"<br/>
+* <strong>typeRequest</strong>: defecto - "post"<br/>
 Tipo de request AJAX , "post" o "get"
-* tinymceinit: defecto - Objeto de opciones de TinyMCE<br/>
+* <strong>tinymceinit</strong>: defecto - Objeto de opciones de TinyMCE<br/>
 Opciones de TinyMCE. Para m&aacute;s opciones pueden visitar la p&aacute;gina oficial de TinyMCE.
-* extraParam: defecto - Empty String<br/>
+* <strong>extraParam</strong>: defecto - Empty String<br/>
 Parametros extras para enviar en la consulta AJAX el formato url string:
 <pre>
 variable1=valor1&variable2=valor2
 </pre>
-* buttonTextEdit: defecto - "save"<br/>
+* <strong>buttonTextEdit</strong>: defecto - "save"<br/>
 Texto del boton de enviar el contenido
-* buttonTextCancel: defecto - "cancel"<br/>
+* <strong>buttonTextCancel</strong>: defecto - "cancel"<br/>
 Texto del boton de cancelar el contenido
-* UIfy: defecto - false<br/>
+* <strong>UIfy</strong>: defecto - false<br/>
 Opcion para convertir botones en botones de jQuery UI
-* blockUI: false<br/>
+* <strong>blockUI</strong>: false<br/>
 Opcion para usar blockUI. Valores: true, false
-* blockOptions: defecto - Objeto de opciones de blockUI<br/>
+* <strong>blockOptions</strong>: defecto - Objeto de opciones de blockUI<br/>
 Opciones de blockUI que se utilizar&aacute;n si la opci&oacute;n blockUI tiene el valor de true. Para m&aacute;s opciones pueden visitar la p&aacute;gina oficial del plugin.
-* ajaxTypeData: defecto - "html"<br/>
+* <strong>ajaxTypeData</strong>: defecto - "html"<br/>
 Tipo de data a recibirse. HTML para el comportamiento defecto. Esto equivale al opci&oacute;n dataType de la funci&oacute;n ajax() de jQuery. Si se usa json se espera un campo llamado "data" el cual debe poseer la informaci&oacute;n que se quiere colocar en el editor web
 
 <h2>Eventos</h2>
 
-* onClick: function<br/>
+* <strong>onClick</strong>: function<br/>
 Callback que se ejecuta cuando se le da click al elemetno para editarlo
-* onCancel: function<br/>
+* <strong>onCancel</strong>: function<br/>
 Callback que se ejecuta cuando se le da click al boton de cancelar
-* onSend: function<br/>
+* <strong>onSend</strong>: function<br/>
 Callback que se ejecuta cuando se le da click al boton de enviar
-* onError: function<br/>
+* <strong>onError</strong>: function<br/>
 Callback que se ejecuta cuando hay un error en la consulta
-* onSuccess: function<br/>
+* <strong>onSuccess</strong>: function<br/>
 Callback que se ejecuta cuando termine de realizarse la consulta
 
 <h2>Demo</h2>
