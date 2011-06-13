@@ -242,10 +242,13 @@
       }
         
    };
-   //para tener id únicos para los editores y containers
-   var $index2 = $('div[id^="'+ internal.idEdit +'"]').length;
+   
    return this.each(function(){
-      options = $.extend(defaults, options);
+      //para tener id únicos para los editores y containers
+	  var $index2 = $('div[id^="'+ internal.idEdit +'"]').length;
+	  //opciones
+	  options = $.extend(defaults, options);
+	  //objeto jquery actual
       var objeto = $(this);
       //iniciar
       internal.ini(objeto, $index2);
