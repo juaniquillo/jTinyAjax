@@ -89,7 +89,7 @@ Callback que se ejecuta cuando termine de realizarse la consulta
 
 <h2>Demo</h2>
 
-jTinyAjax [demos](http://juaniquillo.com/codigo/jquery/jTinyAjax/1.0/)
+jTinyAjax [demos](http://juaniquillo.com/blog/2011/05/jtinyajax/#demos)
 
 <h2>Descarcar</h2>
 
