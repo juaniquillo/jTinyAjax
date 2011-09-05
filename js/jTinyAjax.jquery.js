@@ -1,6 +1,6 @@
 /*
  * jQuery jTinyAjax plugin
- * @version 1.0 
+ * @version 1.2 
  * @requires jQuery v1.4.2 or later
  * @requires TinyMCE Package
  * @author Victor Sanchez
