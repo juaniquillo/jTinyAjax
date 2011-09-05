@@ -76,7 +76,7 @@ Tipo de data a recibirse. HTML para el comportamiento defecto. Esto equivale al 
 <pre>
 {"editor":"esto se pone en el editor","mensaje":"este es un mensaje adicional"}
 </pre>
-El json será "parseado" antes de pasarse a los eventos usando el método "$.parseJSON()" de jQuery.
+El json ser&oacute; "parseado" antes de pasarse a los eventos usando el m&eacute;todo "$.parseJSON()" de jQuery.
 
 <h2>Eventos</h2>
 
