@@ -1,6 +1,6 @@
 <h2>Versi&oacute;n actual</h2>
 
-jTinyAjax 1.1
+jTinyAjax 1.2
 
 <h2>Pruebas hechas en:</h2>
 
@@ -72,7 +72,11 @@ Opcion para usar blockUI. Valores: true, false
 * <strong>blockOptions</strong>: defecto - Objeto de opciones de blockUI<br/>
 Opciones de blockUI que se utilizar&aacute;n si la opci&oacute;n blockUI tiene el valor de true. Para m&aacute;s opciones pueden visitar la p&aacute;gina oficial del plugin.
 * <strong>ajaxTypeData</strong>: defecto - "html"<br/>
-Tipo de data a recibirse. HTML para el comportamiento defecto. Esto equivale al opci&oacute;n dataType de la funci&oacute;n ajax() de jQuery. Si se usa json se espera un campo llamado "data" el cual debe poseer la informaci&oacute;n que se quiere colocar en el editor web
+Tipo de data a recibirse. HTML para el comportamiento defecto. Esto equivale al opci&oacute;n dataType de la funci&oacute;n ajax() de jQuery. Si se usa json se espera un campo llamado "editor" el cual debe poseer la informaci&oacute;n que se quiere colocar en el editor web. El json puede contener cualquier campo adicional, ejemplo:
+<pre>
+{"editor":"esto se pone en el editor","mensaje":"este es un mensaje adicional"}
+</pre>
+El json será "parseado" antes de pasarse a los eventos usando el método "$.parseJSON()" de jQuery.
 
 <h2>Eventos</h2>
 

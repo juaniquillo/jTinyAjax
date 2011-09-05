@@ -161,9 +161,13 @@
                //si se tiene exito
                success: function(content){
                   //quitar elementos/igualar contenido al obtenido por ajax
+                  //si es json
                   if(options.ajaxTypeData === "json"){
-                     internal.remove(idElem, idContainer, content.data);
+                     //usar parseJSON() de jQuery para el contenido
+                     content = $.parseJSON(content);
+                     internal.remove(idElem, idContainer, content.editor);
                   }
+                  //si no es json
                   else{
                      internal.remove(idElem, idContainer, content);
                   }

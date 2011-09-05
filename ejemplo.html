@@ -18,20 +18,113 @@
 <body>
     
     <h1>Default</h1>
-<div class="jTinyAjaxajax" id="id_1"><p>hola</p></div>
+    <h2><a href="#">ver codigo</a></h2>
+    <div class="codigo">
+        <pre>
+$('.jTinyAjaxajax').jTinyAjax({
+    url: 'script.php'
+});
+        </pre>
+    </div>
+    <div class="jTinyAjaxajax" id="id_1"><p>hola</p></div>
     <h1>Con "tinymceinit()" Personalizado</h1>
+    <h2><a href="#">ver codigo</a></h2>
+    <div class="codigo">
+        <pre>
+//con tinymceinit() personalizado
+initTine = {
+    mode : "exact",
+    theme : "advanced",
+    plugins : "spellchecker, pagebreak, style, layer, table, save, advhr, advimage, advlink, emotions, iespell, inlinepopups, insertdatetime, preview, media, searchreplace, print, contextmenu, paste, directionality, fullscreen, noneditable, visualchars, onbreaking, xhtmlxtras, template",
+    theme_advanced_buttons1 : "save,newdocument, |, bold, italic, underline, strikethrough, |, justifyleft, justifycenter, justifyright, justifyfull, |, styleselect, formatselect, fontselect, fontsizeselect",
+    theme_advanced_buttons2 : "cut, copy, paste, pastetext, pasteword, |, search, replace, |, bullist, numlist, |, outdent, indent, blockquote, |, undo, redo, |, link, unlink, anchor, image, cleanup, help, code, |, insertdate, inserttime, preview, |, forecolor, backcolor",
+    theme_advanced_toolbar_location : "top",
+    theme_advanced_statusbar_location : "bottom",
+    theme_advanced_resizing : true
+};
+$('.jTinyAjaxajax2').jTinyAjax({
+    url: 'script.php',
+    tinymceinit : initTine
+});
+        </pre>
+    </div>
     <div class="jTinyAjaxajax2"><p>hola de nuevo</p></div>
     <h1>Usando botones de jQuery UI</h1>
+    <h2><a href="#">ver codigo</a></h2>
+    <div class="codigo">
+        <pre>
+$('.jTinyAjaxajax3').jTinyAjax({
+    url: 'script.php',
+    UIfy: true,
+    buttonTextEdit: '&lt;span class="ui-icon ui-icon-circle-check"&gt;&nbsp;&lt;/span&gt;save',
+    buttonTextCancel: '&lt;span class="ui-icon ui-icon-circle-close"&gt;&nbsp;&lt;/span&gt;cancel'
+});
+        </pre>
+    </div>
     <div class="jTinyAjaxajax3"><p>hola con jquery UI</p></div>
     <h1>Ejemplo Usando <a href="http://jquery.malsup.com/block/">BlockUI</a> para bloquear elementos mientras se envía el formulario</h1>
+    <h2><a href="#">ver codigo</a></h2>
+    <div class="codigo">
+        <pre>
+$('#jTinyAjaxajax4').jTinyAjax({
+    url: 'script.php',
+    blockUI: true
+});
+        </pre>
+    </div>
     <div id="jTinyAjaxajax4"><p>hola con BlockUI</p></div>
     <h1>Ejemplo usando Callbacks</h1>
+    <h2><a href="#">ver codigo</a></h2>
+    <div class="codigo">
+        <pre>
+$('#jTinyAjaxajax5').jTinyAjax({
+    url: 'script.php',
+    onClick: function(message){
+        alert('onClick, mensaje: ' + message);
+    },
+    onCancel: function(message){
+        alert('onCancel, mensaje: '  + message);
+    },
+    onSend: function(message){
+        alert('onSend, mensaje: '  + message);
+    },
+    onError: function(message){
+        alert('onError, mensaje: '  + message);
+    },
+    onSuccess: function(message){
+        alert('onSuccess, mensaje: '  + message);
+    },
+    blockUI: true
+});
+        </pre>
+    </div>
     <div id="jTinyAjaxajax5"><p>hola con callbacks</p></div>
+    <h1>Ejemplo usando json para la respuesta</h1>
+    <h2><a href="#">ver codigo</a></h2>
+    <div class="codigo">
+        <pre>
+$('#jTinyAjaxajax6').jTinyAjax({
+    url: 'script.php',
+    ajaxTypeData: "json",
+    onSuccess: function(message){
+       alert('onSuccess, mensaje: '  + message.mensaje);
+   }
+});
+        </pre>
+    </div>
+    <div id="jTinyAjaxajax6"><p>hola con json</p></div>
     
 <script type="text/javascript">
     
+    //codigo para enseñar el codigo
+    $('h2').next().hide();
+    $('h2 a').click(function(){
+        $(this).parent().next().slideToggle();
+        return false;
+    });
+    
     //paginas a donde se enviara
-    var pagina = 'prueba.php', pagina2 = 'prueba2.php';
+    var pagina = 'prueba.php', pagina2 = 'prueba2.php', pagina3 = 'prueba3.php';
     
     //con opciones defecto
     $('.jTinyAjaxajax').jTinyAjax({
@@ -93,6 +186,14 @@
             alert('onSuccess, mensaje: '  + message);
         },
         blockUI: true
+    });
+    
+    $('#jTinyAjaxajax6').jTinyAjax({
+         url: pagina3,
+         ajaxTypeData: "json",
+         onSuccess: function(message){
+            alert('onSuccess, mensaje: '  + message.mensaje);
+        }
     });
     
         

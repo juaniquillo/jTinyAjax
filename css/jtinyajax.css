@@ -13,3 +13,8 @@
 .botons_ui span.ui-icon{float:left;margin-right:3px;}
 .botons_ui span.ui-button-text{padding:3px 5px}
 .form_edit_ad{padding:5px;}
+
+h1{margin:10px 0}
+h2{margin:10px 0;}
+pre{padding:5px;border:1px solid #CCC;background:#F0F0F0;margin:0;white-space:pre-wrap;}
+.codigo{padding:5px 5px 15px;}
