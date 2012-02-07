@@ -155,7 +155,7 @@
                //tipo ajax
                type: options.typeRequest,
                //variables a enviar
-               data: "data=" + contentHTML + '&' + options.extraParam,
+               data: "data=" + escape(contentHTML) + '&' + options.extraParam,
                //tipo de data
                dataType: options.typeData,
                //si se tiene exito
