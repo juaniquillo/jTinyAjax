@@ -1,6 +1,6 @@
 <h2>Versi&oacute;n actual</h2>
 
-jTinyAjax 1.2
+jTinyAjax 1.3
 
 <h2>Pruebas hechas en:</h2>
 
