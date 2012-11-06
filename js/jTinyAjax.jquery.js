@@ -76,7 +76,7 @@
          
       }
    },
-   //variables y métodos internos
+   //variables y meodos internos
    internal = {
       //clase que se aplica al container
       classEdit: "editjTinyAjax",
@@ -89,7 +89,7 @@
       //iniciar plugin
       ini: function(objeto, index){
 		//variables de iniciacion
-		 var idActual = objeto.attr('id') || internal.idEdit + '_' + index,
+		var idActual = objeto.attr('id') || internal.idEdit + '_' + index,
 			//id del container
 			idContainer = internal.idEditConatiner + '_' + index,
             //objeto para la data()
@@ -138,15 +138,15 @@
       },
       //consulta ajax
       send: function(objeto){
-         //id elemento
-		 var idElem = objeto.data('idEle'),
+        //id elemento
+		var idElem = objeto.data('idEle'),
 			//id container
 			idContainer = objeto.data('idContainer'),
 			//objeto del container
 			container = $('#' + idContainer);
          
          container.delegate('.edit_bot_ad', 'click', function(){
-               //contenido HTML
+            //contenido HTML
             var contentHTML = tinyMCE.get(idElem).getContent(),
                //Parametros extra
                opcionesAjax = {
@@ -201,8 +201,8 @@
       },
       //cancelar
       cancel: function(objeto){
-		 //id elemento
-		 var idElem = objeto.data('idEle'),
+		//id elemento
+		var idElem = objeto.data('idEle'),
 			//id container
 			idContainer = objeto.data('idContainer'),
 			//content esta vacio
@@ -216,12 +216,12 @@
       },
       //remover
       remove: function(idElem, idContainer, content){
-         //contenido
-         if(content !== '') {
+        //contenido
+        if(content !== '') {
             tinyMCE.get(idElem).setContent(content);
-         }
+        }
          //remover instance de tinyMCE
-         tinyMCE.execCommand('mceRemoveControl', false, idElem);
+        tinyMCE.execCommand('mceRemoveControl', false, idElem);
          //ocultar formulario
          $('.form_edit_ad', '#' + idContainer).hide();
       },
@@ -247,21 +247,21 @@
         
    };
    
-   return this.each(function(){
-      //para tener id únicos para los editores y containers
-	  var $index2 = $('div[id^="'+ internal.idEdit +'"]').length;
-	  //opciones
-	  options = $.extend(defaults, options);
-	  //objeto jquery actual
-      var objeto = $(this);
-      //iniciar
-      internal.ini(objeto, $index2);
-      //click
-      internal.clickEdit(objeto);
-      //cancel
-      internal.cancel(objeto);
-      //enviar
-      internal.send(objeto);
+    return this.each(function(){
+        //para tener id unicos para los editores y containers
+        var $index2 = $('div[id^="'+ internal.idEdit +'"]').length;
+        //opciones
+        options = $.extend(defaults, options);
+        //objeto jquery actual
+        var objeto = $(this);
+        //iniciar
+        internal.ini(objeto, $index2);
+        //click
+        internal.clickEdit(objeto);
+        //cancel
+        internal.cancel(objeto);
+        //enviar
+        internal.send(objeto);
 
    });
  };
