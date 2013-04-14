@@ -28,32 +28,126 @@
         </ul>
       </header>
       <section>
-        <h3>Welcome to GitHub Pages.</h3>
+        <h2>Versión actual</h2>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>jTinyAjax 1.3</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<h2>Pruebas hechas en:</h2>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>IE 7 en adelante, Firefox 3 en adelante, Chrome 10 en adelante, Opera 11 en adelante y Safari 4 en adelante.</p>
 
-<h3>Designer Templates</h3>
+<h2>Dependencias</h2>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>El plugin depende de jQuery versión 1.4.2 o mayor debido al uso de funciones como delegate().
+También depende del paquete normal de TinyMCE versión 3 o superior. Favor de no usar la versión de jQuery.</p>
 
-<h3>Rather Drive Stick?</h3>
+<h2>Opcional</h2>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>jQuery UI<br>
+BlockUI</p>
 
-<h3>Authors and Contributors</h3>
+<h2>Uso</h2>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>Primero, debemos incluir los archivos necesarios:</p>
 
-<h3>Support or Contact</h3>
+<pre>
+&lt;!-- css jTinyMCE --&gt;
+&lt;link href="css/jtinyajax.css" rel="stylesheet" type="text/css" /&gt;
+&lt;!-- Scripts --&gt;
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script src="js/tiny_mce/tiny_mce.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script src="js/jTinyAjax.jquery.min.js" type="text/javascript"&gt;&lt;/script&gt;
+</pre>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p>Si se van a usar jQuery UI y/o BlockUI se incluyen también:</p>
+
+<pre>
+&lt;!-- css jquery UI --&gt;
+&lt;link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css" type="text/css" /&gt;
+&lt;!-- Scripts --&gt;
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script src="js/jquery.blockUI/jquery.blockUI.min.js" type="text/javascript"&gt;&lt;/script&gt;
+</pre>
+
+<p>La forma más básica de usar jTinyAjax es pasando el URL de la página encargada de interactuar con el servidor, de esta forma:</p>
+
+<pre>
+//con opciones defecto
+$('.jtinymceajax').jTinyAjax({
+     url: "pagina.php"
+});
+</pre>
+
+<h2>Opciones</h2>
+
+<ul>
+<li>
+<strong>url</strong>: defecto - Empty String<br>
+URL donde se enviará el contenido. La misma se encargará de las operaciones del lado del servidor</li>
+<li>
+<strong>typeRequest</strong>: defecto - "post"<br>
+Tipo de request AJAX , "post" o "get"</li>
+<li>
+<strong>tinymceinit</strong>: defecto - Objeto de opciones de TinyMCE<br>
+Opciones de TinyMCE. Para más opciones pueden visitar la página oficial de TinyMCE.</li>
+<li>
+<strong>extraParam</strong>: defecto - Empty String<br>
+Parametros extras para enviar en la consulta AJAX el formato url string:
+<pre>
+variable1=valor1&amp;variable2=valor2
+</pre>
+</li>
+<li>
+<strong>buttonTextEdit</strong>: defecto - "save"<br>
+Texto del boton de enviar el contenido</li>
+<li>
+<strong>buttonTextCancel</strong>: defecto - "cancel"<br>
+Texto del boton de cancelar el contenido</li>
+<li>
+<strong>UIfy</strong>: defecto - false<br>
+Opcion para convertir botones en botones de jQuery UI</li>
+<li>
+<strong>blockUI</strong>: false<br>
+Opcion para usar blockUI. Valores: true, false</li>
+<li>
+<strong>blockOptions</strong>: defecto - Objeto de opciones de blockUI<br>
+Opciones de blockUI que se utilizarán si la opción blockUI tiene el valor de true. Para más opciones pueden visitar la página oficial del plugin.</li>
+<li>
+<strong>ajaxTypeData</strong>: defecto - "html"<br>
+Tipo de data a recibirse. HTML para el comportamiento defecto. Esto equivale al opción dataType de la función ajax() de jQuery. Si se usa json se espera un campo llamado "editor" el cual debe poseer la información que se quiere colocar en el editor web. El json puede contener cualquier campo adicional, ejemplo:
+<pre>
+{"editor":"esto se pone en el editor","mensaje":"este es un mensaje adicional"}
+</pre>
+El json seró "parseado" antes de pasarse a los eventos usando el método "$.parseJSON()" de jQuery.</li>
+</ul><h2>Eventos</h2>
+
+<ul>
+<li>
+<strong>onClick</strong>: function<br>
+Callback que se ejecuta cuando se le da click al elemetno para editarlo</li>
+<li>
+<strong>onCancel</strong>: function<br>
+Callback que se ejecuta cuando se le da click al boton de cancelar</li>
+<li>
+<strong>onSend</strong>: function<br>
+Callback que se ejecuta cuando se le da click al boton de enviar</li>
+<li>
+<strong>onError</strong>: function<br>
+Callback que se ejecuta cuando hay un error en la consulta</li>
+<li>
+<strong>onSuccess</strong>: function<br>
+Callback que se ejecuta cuando termine de realizarse la consulta</li>
+</ul><h2>Demo</h2>
+
+<p>jTinyAjax <a href="http://juaniquillo.com/blog/2011/05/jtinyajax/#demos">demos</a></p>
+
+<h2>Descarcar</h2>
+
+<p>Descarga el plugin en <a href="https://github.com/juaniquillo/jTinyAjax">GitHub</a></p>
+
+<h2>English Version</h2>
+
+<p>I'm currently working on an english version of this document.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/juaniquillo">juaniquillo</a></p>
